@@ -18,8 +18,8 @@ This MCP server transforms ALMA archive queries from a software engineering prob
 
 ```bash
 # Clone the repository (or copy the ALMA_MCP folder)
-git clone https://github.com/adamzacharia/Quasar2.git
-cd Quasar2/ALMA_MCP
+git clone https://github.com/adamzacharia/ALMA_MCP.git
+cd ALMA_MCP
 
 # Create a dedicated conda environment with Python 3.11+
 conda create -n alma_mcp python=3.11
@@ -35,7 +35,7 @@ pip install fastmcp alminer pyvo astroquery astropy pandas
 **Alternative: Using venv instead of conda:**
 ```bash
 # Navigate to the ALMA_MCP folder
-cd c:\Users\Asus\Desktop\Quasar-main\ALMA_MCP
+cd path/to/ALMA_MCP
 
 # Create a dedicated venv environment
 python -m venv venv
@@ -236,6 +236,58 @@ Once configured, you can ask natural language questions about ALMA data:
 
 ---
 
+## Using with Other LLMs and Frameworks
+
+### LangChain Integration
+
+You can use this MCP server with LangChain using the `langchain-mcp-adapters` package:
+
+```bash
+pip install langchain-mcp-adapters
+```
+
+```python
+from langchain_mcp_adapters.client import MCPClient
+from langchain_openai import ChatOpenAI
+
+# Connect to the MCP server
+client = MCPClient(
+    command="python",
+    args=["path/to/ALMA_MCP/server.py"]
+)
+
+# Get tools from MCP server
+tools = client.get_tools()
+
+# Use with any LangChain-compatible LLM
+llm = ChatOpenAI(model="gpt-4")
+llm_with_tools = llm.bind_tools(tools)
+```
+
+### Open Source LLMs
+
+For open source LLMs (Ollama, LMStudio, etc.), you can:
+
+1. **Use MCP-compatible clients**: Some open source projects like [MCP CLI](https://github.com/modelcontextprotocol/cli) support connecting MCP servers to local LLMs.
+
+2. **Direct function calling**: Import the server functions directly in your Python code:
+
+```python
+from server import search_alma_by_target, search_alma_by_position, get_alma_info
+
+# Use tools directly
+result = search_alma_by_target("M87", search_radius_arcmin=5.0)
+print(result)
+
+# Get ALMA reference info
+info = get_alma_info()
+print(info)
+```
+
+3. **Build a REST API**: Wrap the MCP tools in a FastAPI/Flask server for any LLM that supports function calling via HTTP.
+
+---
+
 ## Architecture
 
 ```
@@ -377,7 +429,7 @@ Special thanks to:
 
 ## License
 
-Part of the [Quasar Project](https://github.com/adamzacharia/Quasar2)
+MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
@@ -398,6 +450,6 @@ If you use this software in your research, please cite:
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/adamzacharia/Quasar2/issues)
+- **Issues**: [GitHub Issues](https://github.com/adamzacharia/ALMA_MCP/issues)
 - **Documentation**: This README and inline code comments
-- **Discussions**: [GitHub Discussions](https://github.com/adamzacharia/Quasar2/discussions)
+- **Discussions**: [GitHub Discussions](https://github.com/adamzacharia/ALMA_MCP/discussions)
