@@ -390,7 +390,7 @@ If you use this software in your research, please cite:
   title={ALMA MCP Server: Astronomical Data Access for AI Agents},
   author={Adam Zacharia Anil and Adele Plunkett},
   year={2025},
-  url={https://github.com/adamzacharia/Quasar2}
+  url={https://github.com/adamzacharia/ALMA_MCP}
 }
 ```
 
