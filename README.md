@@ -69,7 +69,7 @@ Find and edit the Claude Desktop MCP configuration file:
    - **Windows**: Open File Explorer and go to `%APPDATA%\Claude\`
    - **macOS**: `~/Library/Application Support/Claude/`
 
-2. Find the file named `config.json` 
+2. add the 'claude_desktop_config.json' or add the below to your 'config.json' file
 
 3. Add the following configuration to the file:
 
