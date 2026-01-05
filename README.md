@@ -186,7 +186,7 @@ Once configured, you can ask natural language questions about ALMA data:
 - "Search for ALMA observations better than 0.5 arcsec resolution"
 
 ### Proposal/PI Searches
-- "Find ALMA proposals by Susanne Aalto"
+- "Find ALMA proposals by Adele Plunket"
 - "Get data for proposal 2023.1.00001.S"
 - "Search for galaxy evolution proposals"
 
